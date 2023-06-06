@@ -3,7 +3,8 @@
  * SPBRG = (Fosc / (64 * n)) -1
  * For 9600 baudrate, SPBRG ~=77
  */
-#include <p18F4550.h>
+#include <xc.h>
+#include <pic18f4550.h>
 #include <stdio.h>
 #define Fosc 48000000UL
 void InitUART(unsigned int baudrate)
@@ -21,7 +22,7 @@ void SendChar(unsigned char data)
         ;         // Wait while transmit register is empty
     TXREG = data; // Transmit data
 }
-void putch(unsigned char data)
+void putch(char data)
 {
     SendChar(data);
 }
