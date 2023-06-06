@@ -12,9 +12,11 @@
  * CCP1CON<5:4> = <1:1>
  * Hence, CCPR1L = 15 or 0x0F
  */
-#include <p18f4550.h>
+#include <xc.h>
+#include <pic18f4550.h>
+
 unsigned char count = 0;
-bit TIMER, SPEED_UP;
+unsigned char TIMER, SPEED_UP;
 void timer2Init(void)
 {
     T2CON = 0b00000010; // Prescalar = 16; Timer2 OFF
@@ -41,12 +43,12 @@ void main(void)
     {
         for (i = 15; i < 150; i++)
         {
-            CCPR1L = i;
+            CCPR1L = (unsigned char)i;
             delay(100);
         }
         for (i = 150; i > 15; i--)
         {
-            CCPR1L = i;
+            CCPR1L = (unsigned char)i;
             delay(100);
         }
     }
